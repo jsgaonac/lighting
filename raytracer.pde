@@ -1,11 +1,7 @@
 /**
- * Basic Use.
- * by Jean Pierre Charalambos.
+ * Ray Tracer
+ * by Juan Sebastian Gaona C.
  * 
- * This example illustrates a direct approach to use proscene by Scene proper
- * instantiation.
- * 
- * Press 'h' to display the key shortcuts and mouse bindings in the console.
  */
 
 import remixlab.proscene.*;
@@ -13,26 +9,24 @@ import remixlab.proscene.*;
 Scene scene;
 PGraphics canvas;
 String renderer = P3D;
-PImage checkersImg;
+PShader lightShader;
 
 void setup() {
   size(800, 600, renderer);
-  canvas = createGraphics(width, height / 2, renderer);
+  canvas = createGraphics(width, height, renderer);
   scene = new Scene(this, (PGraphics3D) canvas);
   scene.setAxesVisualHint(false);
   scene.setGridVisualHint(false);
   scene.showAll();
 
-  loadAssets();
-}
-
-void loadAssets() {
-  checkersImg = loadImage("assets/texture_checkers.png");
+  lightShader = loadShader("shaders/LightFrag.glsl", "shaders/LightVert.glsl");
 }
 
 void draw() {
   scene.beginDraw();
   canvas.background(0);
+  canvas.shader(lightShader);
+  canvas.directionalLight(255, 255, 255, 1, 1, -1);
   doDrawing();
   scene.endDraw();
   scene.display();
@@ -40,19 +34,34 @@ void draw() {
 
 void doDrawing() {
   drawGround();  
+  drawGeometry();
+}
+
+void drawGeometry() {
+  canvas.noStroke();
+  canvas.pushMatrix();
+  canvas.translate(0, 0, 30);
+  canvas.fill(255, 0, 0);
+  canvas.sphere(30);
+  canvas.translate(20, 100, 50);
+  canvas.fill(0, 255, 0);
+  canvas.sphere(50);
+  canvas.translate(-50, -100, 20);
+  canvas.fill(0, 0, 255);
+  canvas.sphere(20);
+  canvas.translate(35, -80, -10);
+  canvas.fill(255, 0, 255);
+  canvas.sphere(60);
+  canvas.popMatrix();
 }
 
 void drawGround() {
-  final float size = width / 4;
-  canvas.pushMatrix();
+  float size = width / 2;
   scene.setRadius(size);
-  //canvas.textureWrap(REPEAT);
-  canvas.beginShape();
-  canvas.texture(checkersImg);
-  canvas.vertex(-size, -size, 0, 0);
-  canvas.vertex(size, -size, checkersImg.width, 0);
-  canvas.vertex(size, size, checkersImg.width, checkersImg.height);
-  canvas.vertex(-size, size, 0, checkersImg.height);
-  canvas.endShape();
+
+  canvas.pushMatrix();
+  canvas.rectMode(CENTER);
+  canvas.fill(255);
+  canvas.rect(0, 0, size, size);
   canvas.popMatrix();
 }
