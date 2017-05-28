@@ -5,6 +5,7 @@
  */
 
 import remixlab.proscene.*;
+import remixlab.dandelion.geom.Vec;
 
 Scene scene;
 PGraphics canvas;
@@ -15,7 +16,7 @@ void setup() {
   size(800, 600, renderer);
   canvas = createGraphics(width, height, renderer);
   scene = new Scene(this, (PGraphics3D) canvas);
-  scene.setAxesVisualHint(false);
+  scene.setAxesVisualHint(true);
   scene.setGridVisualHint(false);
   scene.showAll();
 
@@ -25,16 +26,27 @@ void setup() {
 void draw() {
   scene.beginDraw();
   canvas.background(0);
-  canvas.shader(lightShader);
-  canvas.directionalLight(255, 255, 255, 1, 1, -1);
   doDrawing();
   scene.endDraw();
   scene.display();
 }
 
 void doDrawing() {
+  drawLight();
   drawGround();  
   drawGeometry();
+  canvas.shader(lightShader);
+}
+
+void drawLight() {
+  int r = 255;
+  int g = 255;
+  int b = 255;
+
+  float x = 100;
+  float y = 100;
+  float z = 100;
+  canvas.ambientLight(r, g, b, x, y, z);
 }
 
 void drawGeometry() {

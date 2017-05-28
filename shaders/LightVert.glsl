@@ -1,4 +1,5 @@
 uniform mat4 modelview;
+uniform mat4 model;
 uniform mat4 transform;
 uniform mat3 normalMatrix;
 
@@ -10,14 +11,15 @@ attribute vec4 color;
 attribute vec3 normal;
 
 varying vec4 vertColor;
-varying vec3 ecNormal;
+varying vec3 vecNormal;
 varying vec3 lightDir;
 
-void main() {
+void main()
+{
   gl_Position = transform * position;
-  vec3 ecPosition = vec3(modelview * position);
 
-  ecNormal = normalize(normalMatrix * normal);
-  lightDir = normalize(lightPosition.xyz - ecPosition);
-  vertColor = color;
+  vec3 vecPos = vec3(modelview * position);
+  lightDir = normalize(lightPosition.xyz - vecPos);
+  vecNormal = normalize(normalMatrix * normal);
+  vertColor = color;    
 }

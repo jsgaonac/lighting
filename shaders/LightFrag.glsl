@@ -4,12 +4,23 @@ precision mediump int;
 #endif
 
 varying vec4 vertColor;
-varying vec3 ecNormal;
+varying vec3 vecNormal;
 varying vec3 lightDir;
 
-void main() {
+uniform vec3 lightAmbient[8];
+
+void main()
+{
+  // Ambient 
+  float intensityVal = 0.1f;
+  vec3 ambient = lightAmbient[0] * intensityVal; 
+
+  // Diffuse
   vec3 direction = normalize(lightDir);
-  vec3 normal = normalize(ecNormal);
-  float intensity = max(1f, dot(direction, normal));
-  gl_FragColor = vec4(intensity, intensity, intensity, 1) * vertColor;
+  vec3 normal = normalize(vecNormal);
+  float diff = max(0, dot(direction, normal));
+  vec3 diffuse = diff * lightAmbient[0];
+
+  vec3 result = (ambient + diffuse) * vertColor.xyz;
+  gl_FragColor = vec4(result, 1);
 }
