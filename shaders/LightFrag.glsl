@@ -24,7 +24,7 @@ void main()
 
   // Specular
   float strength = 0.7f;
-  vec3 viewDir = normalize(vec3(-gl_FragCoord.xyzw * modelview));
+  vec3 viewDir = normalize(-gl_FragCoord.xyz);
   vec3 reflectDir = reflect(-lightDir, normal);
   float spec = pow(max(0, dot(viewDir, reflectDir)), 64);
   vec3 specular = strength * spec *  lightAmbient[0];

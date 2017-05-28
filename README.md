@@ -1,2 +1,2 @@
-# raytracer
-Simple raytracer. Developed with Processing + Proscene
+# Shaders
+Lighting shaders. Developed with Processing + Proscene
