@@ -43,9 +43,11 @@ void drawLight() {
   int g = 255;
   int b = 255;
 
-  float x = 100;
-  float y = 100;
-  float z = 100;
+  Vec cameraPos = scene.camera().position();
+
+  float x = cameraPos.x();
+  float y = cameraPos.y();
+  float z = cameraPos.z();
   canvas.ambientLight(r, g, b, x, y, z);
 }
 
