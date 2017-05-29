@@ -7,7 +7,6 @@ varying vec4 vertColor;
 varying vec3 vecNormal;
 varying vec3 lightDir;
 
-uniform vec3 lightColor;
 uniform vec3 liAmbient;
 uniform vec3 liDiffuse;
 uniform vec3 liSpecular;

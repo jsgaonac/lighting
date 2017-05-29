@@ -26,6 +26,14 @@ class Material {
   }
 }
 
+enum LightComponents {
+  AMBIENT,
+  DIFFUSE,
+  SPECULAR
+}
+
+LightComponents currentComponent = LightComponents.AMBIENT;
+
 // We define light as material but it isn't, it has ambient, diffuse and specular
 // components though.
 Material light = new Material(
@@ -138,7 +146,6 @@ void drawLight() {
   float y = cameraPos.y();
   float z = cameraPos.z();
 
-  lightShader.set("lightColor", r / 255f, g / 255f, b / 255f);
   canvas.ambientLight(r, g, b, x, y, z);
 }
 
@@ -153,13 +160,16 @@ void drawGeometry() {
   canvas.sphere(50);
   canvas.translate(-50, -100, 20);
   canvas.fill(0, 0, 255);
-  canvas.sphere(20);
+  canvas.box(20);
   canvas.translate(35, -80, -10);
   canvas.fill(255, 0, 255);
   canvas.sphere(60);
   canvas.translate(100, 70, 0);
   canvas.fill(255, 255, 0);
   canvas.box(60);
+  canvas.translate(-200, 20, -20);
+  canvas.fill(255, 255, 255);
+  canvas.sphere(50);
   canvas.popMatrix();
 }
 
@@ -174,8 +184,30 @@ void drawGround() {
   canvas.popMatrix();
 }
 
+void keyPressed() {
+  float delta = 0.01f;
+  float dR = 0;
+  float dG = 0;
+  float dB = 0;
+
+  switch (key) {
+    case '4': dR += -delta; break;
+    case '5': dR += delta; break;
+    case '6': dG += -delta; break;
+    case '7': dG += delta; break;
+    case '8': dB += -delta; break;
+    case '9': dB += delta; break;
+    default: break;
+  }
+}
+
 void keyReleased() {
-  if (key == 'k') {
-    currentMaterial = ++currentMaterial % materials.length;
+  switch (key) {
+    case 'k': currentMaterial = (currentMaterial + 1) % materials.length; break;
+    case 'j': currentMaterial = currentMaterial - 1 >= 0 ? currentMaterial - 1 : materials.length - 1;
+    case '1': currentComponent = LightComponents.AMBIENT; break;
+    case '2': currentComponent = LightComponents.DIFFUSE; break;
+    case '3': currentComponent = LightComponents.SPECULAR; break;
+    default: break;
   }
 }
