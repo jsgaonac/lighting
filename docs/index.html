@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>lighting - jsgaonac</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
@@ -24,8 +24,67 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+
+			<!-- Title and content -->
+				<section>
+					<section data-background="#D32F2F">
+						<h1>Lighting</h1>
+						<h4>Juan Sebastian Gaona C.</h4>
+					</section>
+
+					<section data-background="#FF9800">
+						<nav>
+							<h4>Content</h4>
+						<span class="fragment fade-in">
+							<p class="fragment shrink">1. Goal</p>
+							<p class="fragment shrink">2. Implementation</p>
+							<p class="fragment shrink">3. Demo</p>
+							<p class="fragment shrink">4. Conclusions</p>
+						</span>
+						</nav>
+					</section>
+				</section>
+
+				<!-- Goal -->
+				<section data-background="#F44336">
+					<h1>Goal</h1>
+					<p class="fragment fade-in">
+						To implement the Phong reflection model using shaders
+					</p>
+				</section>
+
+				<!-- Implementation -->
+				<section data-background="#607D8B">
+					<section>
+						<h1>Implementation</h1>						
+					</section>
+
+					<section>
+						<h3>Processing + Proscene</h3>
+						<h3>GLSL: vertex shader + fragment shader</h3>
+					</section>
+				</section>
+
+				<!-- Demo -->
+				<section>
+					<h1>Demo</h1>
+					<img src="img/processing3-logo.png" alt="Processing 3 logo"
+					style="width:30%; height: auto">
+				</section>
+
+				<!-- Conclusions -->
+				<section data-background="#4D7E65">
+					<h1>Conclusions</h1>
+					<ol class="fragment fade-in">
+						<li>
+						Phong reflection model is a good approximation model to how objects reflect light in real life
+						</li>
+
+						<li>
+							Shaders are a powerful tool to improve visuals in graphics applications
+						</li>
+					</ol>
+				</section>
 			</div>
 		</div>
 
@@ -42,7 +101,109 @@
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
+				],
+				// Display controls in the bottom right corner
+				controls: false,
+
+				// Display a presentation progress bar
+				progress: true,
+
+				// Set default timing of 2 minutes per slide
+				defaultTiming: 120,
+
+				// Display the page number of the current slide
+				slideNumber: false,
+
+				// Push each slide change to the browser history
+				history: false,
+
+				// Enable keyboard shortcuts for navigation
+				keyboard: true,
+
+				// Enable the slide overview mode
+				overview: true,
+
+				// Vertical centering of slides
+				center: true,
+
+				// Enables touch navigation on devices with touch input
+				touch: true,
+
+				// Loop the presentation
+				loop: false,
+
+				// Change the presentation direction to be RTL
+				rtl: false,
+
+				// Randomizes the order of slides each time the presentation loads
+				shuffle: false,
+
+				// Turns fragments on and off globally
+				fragments: true,
+
+				// Flags if the presentation is running in an embedded mode,
+				// i.e. contained within a limited portion of the screen
+				embedded: false,
+
+				// Flags if we should show a help overlay when the questionmark
+				// key is pressed
+				help: true,
+
+				// Flags if speaker notes should be visible to all viewers
+				showNotes: false,
+
+				// Global override for autolaying embedded media (video/audio/iframe)
+				// - null: Media will only autoplay if data-autoplay is present
+				// - true: All media will autoplay, regardless of individual setting
+				// - false: No media will autoplay, regardless of individual setting
+				autoPlayMedia: null,
+
+				// Number of milliseconds between automatically proceeding to the
+				// next slide, disabled when set to 0, this value can be overwritten
+				// by using a data-autoslide attribute on your slides
+				autoSlide: 0,
+
+				// Stop auto-sliding after user input
+				autoSlideStoppable: true,
+
+				// Use this method for navigation when auto-sliding
+				autoSlideMethod: Reveal.navigateNext,
+
+				// Enable slide navigation via mouse wheel
+				mouseWheel: false,
+
+				// Hides the address bar on mobile devices
+				hideAddressBar: true,
+
+				// Opens links in an iframe preview overlay
+				previewLinks: false,
+
+				// Transition style
+				transition: 'concave', // none/fade/slide/convex/concave/zoom
+
+				// Transition speed
+				transitionSpeed: 'default', // default/fast/slow
+
+				// Transition style for full page slide backgrounds
+				backgroundTransition: 'zoom', // none/fade/slide/convex/concave/zoom
+
+				// Number of slides away from the current that are visible
+				viewDistance: 3,
+
+				// Parallax background image
+				parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+				// Parallax background size
+				parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+				// Number of pixels to move the parallax background per slide
+				// - Calculated automatically unless specified
+				// - Set to 0 to disable movement along an axis
+				parallaxBackgroundHorizontal: null,
+				parallaxBackgroundVertical: null,
+
+				// The display mode that will be used to show slides
+				display: 'block'
 			});
 		</script>
 	</body>
