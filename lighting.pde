@@ -185,18 +185,25 @@ void drawGround() {
 }
 
 void keyPressed() {
-  float delta = 0.01f;
+  float delta = 0.05f;
   float dR = 0;
   float dG = 0;
   float dB = 0;
 
   switch (key) {
-    case '4': dR += -delta; break;
-    case '5': dR += delta; break;
-    case '6': dG += -delta; break;
-    case '7': dG += delta; break;
-    case '8': dB += -delta; break;
-    case '9': dB += delta; break;
+    case '4': dR = -delta; break;
+    case '5': dR = delta; break;
+    case '6': dG = -delta; break;
+    case '7': dG = delta; break;
+    case '8': dB = -delta; break;
+    case '9': dB = delta; break;
+    default: break;
+  }
+
+  switch (currentComponent) {
+    case AMBIENT: light.ambient.add(dR, dG, dB); break;
+    case DIFFUSE: light.diffuse.add(dR, dG, dB); break;
+    case SPECULAR: light.specular.add(dR, dG, dB); break;
     default: break;
   }
 }
